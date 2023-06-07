@@ -1,6 +1,6 @@
 # pikanetwork.py
 
-A unique api wrapper for pikanetwork.
+A unique API wrapper for **PikaNetwork API**.
 
 It provides ready-to-use objects from the api to python for optimization and durability of data.
 
