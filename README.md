@@ -24,6 +24,13 @@ to install pikanetwork.py, you can use:
 $ pip install pikanetwork.py
 ```
 
+# Contribution
+You can open an issue to state your concerns or feature you want to implement.
+
+We can make a deal and arrange how tasks should be assigned.
+
+**ALWAYS OPEN AN ISSUE BEFORE MAKING A PULL REQUEST.**
+
 # License
 
 Copyright (c) 2023 LetsChill.
