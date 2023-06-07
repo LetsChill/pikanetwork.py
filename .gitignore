@@ -2,3 +2,4 @@
 build
 pikanetwork.py.egg-info
 dist
+venv

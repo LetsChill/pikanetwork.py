@@ -13,7 +13,7 @@ __author__ = 'LetsChill'
 __copyright__ = 'LetsChill 2023'
 __license__ = 'MIT'
 
-__version__ = '0.0.0'
+__version__ = '1.0.0'
 
 # structure
 
