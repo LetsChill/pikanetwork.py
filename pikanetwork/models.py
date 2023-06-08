@@ -24,6 +24,8 @@ SOFTWARE.
 
 from dataclasses import dataclass
 
+from typing import (Optional, Union)
+
 
 @dataclass
 class ClanOwner:
@@ -61,7 +63,7 @@ class Clan:
     tag: str
     current_trophies: str
     creation_time: str
-    members: list[ClanMember] | list
+    members: Union[list[ClanMember], list]
     owner: ClanOwner
     level: int
     experience: int
@@ -92,7 +94,7 @@ class GameRank:
     name: str
     display_name: str
     server: str
-    season: str | None
+    season: Optional[str]
 
 
 @dataclass
@@ -121,36 +123,75 @@ class Player:
     ranks: list[GameRank]
     email_verified: bool
     discord_boosting: bool
-    clan: Clan | None
+    clan: Optional[Clan]
     rank: Rank
     friends: list[Friend]
 
-    def get_leaderboard(self):
-        leaderboard = build_player_leaderboard(self.username)
+
+@dataclass
+class PlayerLeaderboardBase:
+    total_players: int
+    place: Union[int, None]
+    value: Union[str, None]
+    username: Union[str, None]
 
 
 @dataclass
-class LeaderboardData:
-    total_entries: int
-
-    place: int | None
-    value: str | None
-    username: str | None
-
-
-@dataclass
-class LeaderboardBase:
+class PlayerLeaderboard:
     """
-    LeaderboardBase
+    A PlayerLeaderboard object
 
-    An object that initiates any type of leaderboard.
+    It contains details about a player's leaderboard stats.
     """
-    data: dict
-    total_entries: int
+    mobs_killed: Optional[PlayerLeaderboardBase] = None
+    player_level: Optional[PlayerLeaderboardBase] = None
+    deaths: Optional[PlayerLeaderboardBase] = None
+    kills: Optional[PlayerLeaderboardBase] = None
+    losses: Optional[PlayerLeaderboardBase] = None
+    wins: Optional[PlayerLeaderboardBase] = None
 
+    highest_killstreak: Optional[PlayerLeaderboardBase] = None
+    current_killstreak: Optional[PlayerLeaderboardBase] = None
+    highest_winstreak_reached: Optional[PlayerLeaderboardBase] = None
 
-class Leaderboards:
-    """
-    A class that contains a set of dataclasses for leaderboards.
-    """
-    pass
+    balance: Optional[PlayerLeaderboardBase] = None
+
+    blocks_placed: Optional[PlayerLeaderboardBase] = None
+    blocks_broken: Optional[PlayerLeaderboardBase] = None
+
+    gambling_skill_level: Optional[PlayerLeaderboardBase] = None
+    swords_skill_level: Optional[PlayerLeaderboardBase] = None
+
+    harvest_sugar_cane: Optional[PlayerLeaderboardBase] = None
+    total_koths_won: Optional[PlayerLeaderboardBase] = None
+
+    souls: Optional[PlayerLeaderboardBase] = None
+    tokens: Optional[PlayerLeaderboardBase] = None
+    tokens_obtained: Optional[PlayerLeaderboardBase] = None
+    gems_obtained: Optional[PlayerLeaderboardBase] = None
+    tokens_spent: Optional[PlayerLeaderboardBase] = None
+    prestige: Optional[PlayerLeaderboardBase] = None
+    exp_collected: Optional[PlayerLeaderboardBase] = None
+
+    bow_kills: Optional[PlayerLeaderboardBase] = None
+    arrow_kills: Optional[PlayerLeaderboardBase] = None
+    melee_kills: Optional[PlayerLeaderboardBase] = None
+    void_kills: Optional[PlayerLeaderboardBase] = None
+    games_played: Optional[PlayerLeaderboardBase] = None
+    arrows_shot: Optional[PlayerLeaderboardBase] = None
+    arrows_hit: Optional[PlayerLeaderboardBase] = None
+    beds_destroyed: Optional[PlayerLeaderboardBase] = None
+    final_kills: Optional[PlayerLeaderboardBase] = None
+
+    lumberjack_skill_level: Optional[PlayerLeaderboardBase] = None
+    adventurer_skill_level: Optional[PlayerLeaderboardBase] = None
+    farmer_skill_level: Optional[PlayerLeaderboardBase] = None
+    archery_skill_level: Optional[PlayerLeaderboardBase] = None
+    axes_skill_level: Optional[PlayerLeaderboardBase] = None
+    special_ores_mined: Optional[PlayerLeaderboardBase] = None
+    miner_skill_level: Optional[PlayerLeaderboardBase] = None
+    wizard_skill_level: Optional[PlayerLeaderboardBase] = None
+    banker_skill_level: Optional[PlayerLeaderboardBase] = None
+    alchemist_skill_level: Optional[PlayerLeaderboardBase] = None
+    lucky_skill_level: Optional[PlayerLeaderboardBase] = None
+    drugs_skill_level: Optional[PlayerLeaderboardBase] = None

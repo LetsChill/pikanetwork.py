@@ -43,7 +43,7 @@ setup(
     version=version,
     packages=packages,
     license='MIT',
-    description='A Python wrapper for the Discord API',
+    description='A Python wrapper for the Pika Network API',
     long_description=readme,
     long_description_content_type='text/markdown',
     include_package_data=True,

@@ -77,5 +77,28 @@ async def build_player(player_data: dict) -> Player:
 
     return player
 
-async def build_player_leaderboard(leaderboard_data):
-    pass
+
+async def build_player_leaderboard(leaderboard_data: dict) -> PlayerLeaderboard:
+
+    attributes = {}
+
+    for key in leaderboard_data:
+        data = leaderboard_data[key]
+
+        name = key.replace(" ", "_").lower()
+
+        if data["entries"] is None:
+            attributes[name] = None
+        else:
+            place = data["entries"][0]["place"]
+            value = data["entries"][0]["value"]
+            username = data["entries"][0]["id"]
+
+            attributes[name] = PlayerLeaderboardBase(
+                total_players=data["metadata"]["total"],
+                place=place,
+                value=value,
+                username=username
+            )
+
+    return PlayerLeaderboard(**attributes)

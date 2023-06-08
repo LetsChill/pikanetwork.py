@@ -9,3 +9,6 @@ class PlayerNotFound(Exception):
 
 class PlayerWithNoClan(Exception):
     pass
+
+class InvalidServerArgument(Exception):
+    pass

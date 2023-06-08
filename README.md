@@ -9,6 +9,8 @@ It also makes accessing data an easy thing to do.
 # usage
 
 A basic example:
+
+## Fetching a player's information.
 ```py
 from pikanetwork import PikaAPI
 import asyncio
@@ -66,6 +68,22 @@ asyncio.run(print_player_clan_owner("Arrly"))
 # ClanOwner(...)
 # or
 # This player does not have a clan.
+```
+## Fetching a player's leaderboard statistics.
+```python
+from pikanetwork import PikaAPI
+import asyncio
+
+app = PikaAPI()
+
+async def get_player_bedwars_leaderboard(name: str):
+    
+    leaderboard = await app.get_player_leaderboard(name, "bedwars", "total", "solo")
+    
+    print(leaderboard)
+
+asyncio.run(get_player_bedwars_leaderboard("Wondermine"))
+# PlayerLeaderboard(...)
 ```
 
 # Installation
