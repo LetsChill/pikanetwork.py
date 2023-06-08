@@ -1,7 +1,7 @@
 from pikanetwork.models import *
 
 
-def build_player(player_data: dict):
+async def build_player(player_data: dict) -> Player:
 
     ranks = []
 
@@ -31,13 +31,13 @@ def build_player(player_data: dict):
 
         members = []
 
-        for index in clan_data["members"]:
-            member_data = clan_data["members"][index]["user"]
+        for member_raw_data in clan_data["members"]:
+            member_data = member_raw_data["user"]
             member = ClanMember(
                 username=member_data["username"],
                 last_seen=member_data["lastSeen"],
                 online=member_data["online"],
-                join_date=clan_data["members"][index]["joinDate"]
+                join_date=member_raw_data["joinDate"]
             )
             members.append(member)
 
@@ -45,7 +45,7 @@ def build_player(player_data: dict):
             name=clan_data["name"],
             tag=clan_data["tag"],
             current_trophies=clan_data["currentTrophies"],
-            creation_time=clan_data["CreationTime"],
+            creation_time=clan_data["creationTime"],
             members=members,
             owner=ClanOwner(
                 username=clan_data["owner"]["username"],
@@ -76,3 +76,6 @@ def build_player(player_data: dict):
     )
 
     return player
+
+async def build_player_leaderboard(leaderboard_data):
+    pass

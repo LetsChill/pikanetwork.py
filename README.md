@@ -11,10 +11,61 @@ It also makes accessing data an easy thing to do.
 A basic example:
 ```py
 from pikanetwork import PikaAPI
+import asyncio
 
 app = PikaAPI()
 
-player = app.get_player("{Player Name}")
+
+async def print_player_data(name: str):
+    player = await app.get_player(name)
+
+    print(player)
+
+
+async def print_player_clan(name: str):
+    player = await app.get_player(name)
+
+    # Sometimes the Player has a Nullified clan Attribute. you can use an if statement on the clan object
+    # for easier handling.
+    try:
+        print(player.clan)
+    except AttributeError:
+        print("This player does not have a clan!")
+        
+    # or
+    if player.clan is None:
+        print("This player does not have a clan.")
+        return
+    
+    print(player.clan.owner)
+
+
+async def print_player_clan_owner(name: str):
+    player = await app.get_player(name)
+
+    try:
+        print(player.clan.owner)
+    except AttributeError:
+        print("This player does not have a clan!")
+
+    # or
+    if player.clan is None:
+        print("This player does not have a clan.")
+        return
+    
+    print(player.clan.owner)
+
+
+asyncio.run(print_player_data("LetsChill"))
+# Player(...)
+asyncio.run(print_player_clan("MrEpiko"))
+# Clan(...)
+# or
+# This player does not have a clan.
+asyncio.run(print_player_clan_owner("Arrly"))
+# ClanOwner(...)
+# or
+# This player does not have a clan.
 ```
 
 # Installation
