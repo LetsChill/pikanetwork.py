@@ -6,10 +6,7 @@ It provides ready-to-use objects from the api to python for optimization and dur
 
 It also makes accessing data an easy thing to do.
 
-# usage
-
-A basic example:
-
+# Basic Examples:
 ## Fetching a player's information.
 ```py
 from pikanetwork import PikaAPI
